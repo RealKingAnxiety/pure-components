@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-// ==================== Challenge 1: Fixed Clock ====================
+// Clock Challenge
 function Clock({ time }: { time: Date }) {
   const hours = time.getHours();
   const className = hours >= 0 && hours <= 6 ? 'night' : 'day';
@@ -14,14 +14,18 @@ function Clock({ time }: { time: Date }) {
   );
 }
 
-// ==================== Challenge 2: Fixed Profile ====================
+// Profile Challenge
 function Profile({ person, isCollapsed }: { person: any; isCollapsed: boolean }) {
   return (
     <div className="profile">
       <h2>{person.name}</h2>
       {!isCollapsed && (
         <div>
-          <img src={person.image} alt={person.name} style={{ width: '100px' }} />
+          <img 
+            src={person.image} 
+            alt={person.name} 
+            style={{ width: '180px', borderRadius: '12px' }} 
+          />
           <p>{person.bio}</p>
         </div>
       )}
@@ -29,11 +33,9 @@ function Profile({ person, isCollapsed }: { person: any; isCollapsed: boolean })
   );
 }
 
-// ==================== Challenge 3: Fixed Story Tray ====================
+// Story Tray Challenge
 function StoryTray({ stories }: { stories: any[] }) {
   const createStory = { id: 0, label: 'Create Story' };
-
-  // Avoid mutation by creating a new array
   const displayStories = [createStory, ...stories];
 
   return (
@@ -53,7 +55,6 @@ export default function PureComponents() {
   const [collapsed1, setCollapsed1] = useState(false);
   const [collapsed2, setCollapsed2] = useState(false);
 
-  // Update time every second
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(interval);
@@ -61,13 +62,13 @@ export default function PureComponents() {
 
   const person1 = {
     name: 'Taylor Swift',
-    image: 'https://picsum.photos/id/64/100',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Taylor_Swift_-_The_Eras_Tour_-_March_17%2C_2023_%28cropped%29.jpg/800px-Taylor_Swift_-_The_Eras_Tour_-_March_17%2C_2023_%28cropped%29.jpg',
     bio: 'Singer-songwriter and musician.'
   };
 
   const person2 = {
     name: 'Kanye West',
-    image: 'https://picsum.photos/id/65/100',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/71/Kanye_West.jpg',
     bio: 'Rapper, producer, and fashion designer.'
   };
 
@@ -81,23 +82,19 @@ export default function PureComponents() {
     <div className="p-8 max-w-4xl mx-auto">
       <h1 className="text-4xl font-bold mb-8 text-center">Keeping Components Pure</h1>
 
-      {/* Challenge 1: Clock */}
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">1. Fixed Clock</h2>
         <Clock time={time} />
-        <p className="mt-2 text-sm text-gray-600">
-          Change your system timezone to test night/day mode
-        </p>
+        <p className="mt-2 text-sm text-gray-600">Change system timezone to test night/day mode</p>
       </section>
 
-      {/* Challenge 2: Profiles */}
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">2. Fixed Profile</h2>
-        <div className="flex gap-8">
+        <div className="flex gap-8 flex-wrap">
           <div>
             <button 
               onClick={() => setCollapsed1(!collapsed1)}
-              className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="mb-4 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >
               {collapsed1 ? 'Expand' : 'Collapse'} Taylor
             </button>
@@ -107,7 +104,7 @@ export default function PureComponents() {
           <div>
             <button 
               onClick={() => setCollapsed2(!collapsed2)}
-              className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="mb-4 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >
               {collapsed2 ? 'Expand' : 'Collapse'} Kanye
             </button>
@@ -116,13 +113,10 @@ export default function PureComponents() {
         </div>
       </section>
 
-      {/* Challenge 3: Story Tray */}
       <section>
         <h2 className="text-2xl font-semibold mb-4">3. Fixed Story Tray</h2>
         <StoryTray stories={stories} />
-        <p className="mt-4 text-sm text-gray-600">
-          "Create Story" appears only once (no duplication)
-        </p>
+        <p className="mt-4 text-sm text-gray-600">"Create Story" appears only once</p>
       </section>
     </div>
   );
