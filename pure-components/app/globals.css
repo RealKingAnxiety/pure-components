@@ -1,0 +1,33 @@
+.night {
+  background-color: #000;
+  color: #fff;
+}
+
+.day {
+  background-color: #fff;
+  color: #000;
+}
+
+.profile {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  width: 220px;
+}
+
+.story-tray {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+.story {
+  padding: 12px 20px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 100px;
+  text-align: center;
+}
